@@ -19,11 +19,4 @@ export async function isLoggined(req, res, next) {
         res.status(400).send('invalid token');
     }
 }
-export async function isAdmin(req, res, next) {
-    if (!req.user?.isadmin) {
-        res.status(403).send('access denied');
-        return;
-    }
-    next();
-}
 //# sourceMappingURL=auth.js.map

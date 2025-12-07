@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import User, { IUser } from './../Module/user.js';
 import { CustomRequest } from '../Routes/controller.js';
 
+
 dotenv.config();
 
 export async function isLoggined(
@@ -25,16 +26,4 @@ export async function isLoggined(
   } catch (ex) {
     res.status(400).send('invalid token');
   }
-}
-
-export async function isAdmin(
-  req: CustomRequest,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
-  if (!req.user?.isadmin) {
-    res.status(403).send('access denied');
-    return;
-  }
-  next();
 }
