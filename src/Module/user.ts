@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
-import timeStamp from 'mongoose-timestamp';
 
 export interface IUser extends Document {
   email: string;
@@ -15,9 +14,8 @@ const userSchema = new Schema<IUser>({
   name: { type: String, required: true },
   password: { type: String, required: true },
   isadmin: { type: Boolean, required: true, default: false },
-});
+},{timestamps:true});
 
-userSchema.plugin(timeStamp);
 
 const User: Model<IUser> = mongoose.model<IUser>('User', userSchema);
 

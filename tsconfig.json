@@ -16,9 +16,6 @@
     "outDir": "./dist",
     "rootDir": "./",
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
   },
   "include": ["index.ts", "src/**/*.ts", "startup/**/*.ts"],
   "exclude": ["node_modules", "dist"]

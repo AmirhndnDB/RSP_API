@@ -1,8 +1,8 @@
 {
-  "watch": ["src", "startup", "index.ts"],
-  "ext": "ts",
-  "ignore": ["node_modules", "dist", "**/*.js"],
-  "exec": "npm run build && node dist/index.js",
+  "watch": ["dist"],
+  "ext": "js",
+  "ignore": ["node_modules"],
+  "exec": "node dist/index.js",
   "delay": 1000,
   "env": {
     "NODE_ENV": "development",

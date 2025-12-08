@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon",
-    "dev:debug": "DEBUG=app:main nodemon",
+    "dev": "tsc --watch & nodemon",
+    "dev:debug": "DEBUG=app:main tsc --watch & nodemon",
     "prod": "NODE_ENV=production node dist/index.js",
     "build:prod": "tsc && NODE_ENV=production node dist/index.js"
   },
@@ -15,6 +15,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/bcrypt": "^6.0.0",
     "auto-bind": "^4.0.0",
     "bcrypt": "^6.0.0",
     "config": "^4.1.1",
@@ -25,11 +26,9 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mongoose": "^8.19.2",
-    "mongoose-timestamp": "^0.6.0",
     "winston": "^3.18.3"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
     "@types/debug": "^4.1.12",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.7",
