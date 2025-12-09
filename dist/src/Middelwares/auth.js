@@ -13,6 +13,7 @@ export async function isLoggined(req, res, next) {
         const user = await User.findById(decoded._id);
         if (!user) {
             res.status(404).send('user not found');
+            return;
         }
         req.user = user;
         next();

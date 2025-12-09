@@ -21,7 +21,8 @@ export async function isLoggined(
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { _id: string };
     const user = await User.findById(decoded._id);
     if(!user) {
-      res.status(404).send('user not found')
+      res.status(404).send('user not found');
+      return;
     }
     req.user = user as IUser;
     next();

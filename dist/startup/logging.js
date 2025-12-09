@@ -10,13 +10,11 @@ export default function loggingStartup() {
     process.on('uncaughtException', (ex) => {
         dbg(ex);
         logger.error(ex.message, ex);
-        process.exit(1);
     });
     process.on('unhandledRejection', (ex) => {
         dbg(ex);
         const error = ex instanceof Error ? ex : new Error(String(ex));
         logger.error(error.message, error);
-        process.exit(1);
     });
 }
 //# sourceMappingURL=logging.js.map
