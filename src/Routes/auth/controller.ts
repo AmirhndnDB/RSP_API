@@ -11,7 +11,6 @@ const jwtkey = process.env.JWT_SECRET || 'secret';
 
 export default class AuthController extends Controller {
   async register(req: CustomRequest, res: Response): Promise<void> {
-    console.log(this);
     let user = await this.User.findOne({ email: req.body.email });
     if (user) {
       this.response(res, 'this user already registered', 400);
