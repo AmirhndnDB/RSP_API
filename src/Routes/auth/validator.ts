@@ -8,17 +8,16 @@ export default class AuthValidator {
 
   registerValidator(): ValidationChain[] {
     return [
-      check('name').trim().notEmpty().withMessage('name cant be Empty'),
+      check('name').trim().notEmpty().withMessage('name cannot be empty'),
       check('email').trim().isEmail().withMessage('email is invalid'),
-      check('password').trim().notEmpty().withMessage('password cant be Empty'),
-      check('password').isLength({ min: 6 }).withMessage('password must be at least 6 characters long')
+      check('password').trim().notEmpty().isLength({ min: 6 }).withMessage('password must be at least 6 characters long')
     ];
   }
 
   loginValidator(): ValidationChain[] {
     return [
       check('email').trim().isEmail().withMessage('email is invalid'),
-      check('password').notEmpty().withMessage('password cant be Empty'),
+      check('password').trim().notEmpty().withMessage('password cannot be empty'),
     ];
   }
 }

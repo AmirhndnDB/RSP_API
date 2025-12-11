@@ -35,10 +35,8 @@ export default class Controller {
   }
 
   validate(req: Request, res: Response, next: NextFunction): void {
-    if (!this.validationBody(req, res)) {
-      return;
-    }
-    next();
+    if (!this.validationBody(req, res)) return;
+    return next();
   }
 
   response(

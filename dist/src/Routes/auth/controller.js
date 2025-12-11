@@ -9,7 +9,7 @@ export default class AuthController extends Controller {
     async register(req, res) {
         const isExist = await this.User.exists({ email: req.body.email });
         if (isExist) {
-            return this.response(res, 'this user already registered', 400);
+            return this.response(res, 'this user already registered', 409);
         }
         let user = new this.User(_.pick(req.body, ['name', 'email', 'password']));
         const salt = await bcrypt.genSalt(10);
@@ -28,7 +28,7 @@ export default class AuthController extends Controller {
             this.response(res, 'invalid email or password', 400);
             return;
         }
-        const token = jwt.sign({ _id: user.id }, jwtkey, { expiresIn: '14d' });
+        const token = jwt.sign({ _id: user.id, email: user.email }, jwtkey, { expiresIn: '14d' });
         this.response(res, 'successfully logged in', 200, { token });
     }
 }

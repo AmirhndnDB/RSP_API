@@ -21,10 +21,9 @@ export default class Controller {
         return true;
     }
     validate(req, res, next) {
-        if (!this.validationBody(req, res)) {
+        if (!this.validationBody(req, res))
             return;
-        }
-        next();
+        return next();
     }
     response(res, message, code = 200, data = {}) {
         res.status(code).json({
