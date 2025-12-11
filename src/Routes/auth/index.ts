@@ -1,22 +1,21 @@
-import express, { Router, Request, Response, NextFunction } from 'express';
-import { authController } from './controller.js';
-import { validator } from './validator.js';
-import { CustomRequest } from '../controller.js';
+import express, { Router} from "express";
+import { authController } from "./controller.js";
+import { validator } from "./validator.js";
 
 const router: Router = express.Router();
 
 router.post(
-  '/register',
+  "/register",
   ...validator.registerValidator(),
-  (req: Request, res: Response, next: NextFunction) => authController.validate(req, res, next),
-  (req: Request, res: Response) => authController.register(req as CustomRequest, res)
+  authController.validate,
+  authController.register
 );
 
 router.post(
-  '/login',
+  "/login",
   ...validator.loginValidator(),
-  (req: Request, res: Response, next: NextFunction) => authController.validate(req, res, next),
-  (req: Request, res: Response) => authController.login(req as CustomRequest, res)
+  authController.validate,
+  authController.login
 );
 
 export default router;

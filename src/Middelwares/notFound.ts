@@ -6,7 +6,6 @@ export default function notFoundHandler(
 ):void {
 
   res.status(404).json({
-    success: false,
     message:'Rout not found',
     data:null
   });

@@ -7,12 +7,11 @@ dotenv.config();
 const jwtkey = process.env.JWT_SECRET || 'secret';
 export default class AuthController extends Controller {
     async register(req, res) {
-        let user = await this.User.findOne({ email: req.body.email });
-        if (user) {
-            this.response(res, 'this user already registered', 400);
-            return;
+        const isExist = await this.User.exists({ email: req.body.email });
+        if (isExist) {
+            return this.response(res, 'this user already registered', 400);
         }
-        user = new this.User(_.pick(req.body, ['name', 'email', 'password']));
+        let user = new this.User(_.pick(req.body, ['name', 'email', 'password']));
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
         await user.save();
@@ -29,7 +28,7 @@ export default class AuthController extends Controller {
             this.response(res, 'invalid email or password', 400);
             return;
         }
-        const token = jwt.sign({ _id: user.id }, jwtkey);
+        const token = jwt.sign({ _id: user.id }, jwtkey, { expiresIn: '14d' });
         this.response(res, 'successfully logged in', 200, { token });
     }
 }
